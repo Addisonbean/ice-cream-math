@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       recipe: ingredients.map(i => ({ ...i, grams: 0 })),
+      normalizeTo: 1000,
     };
   },
 
@@ -17,7 +18,13 @@ export default {
     },
     formatPercent(n) {
       return new Intl.NumberFormat('us-EN', { style: 'percent' }).format(n);
-    }
+    },
+    normalizeRecipe() {
+      const total = this.stats.weight;
+      for (const i of this.$data.recipe) {
+        i.grams = i.grams / total * this.normalizeTo;
+      }
+    },
   },
 
   computed: {
@@ -129,6 +136,13 @@ export default {
         </tr>
       </tbody>
     </table>
+
+    <input type="number" v-model="normalizeTo" />
+    <button
+      @click="normalizeRecipe()"
+    >
+      Normalize
+    </button>
   </div>
 </template>
 

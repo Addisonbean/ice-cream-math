@@ -83,6 +83,15 @@ const ingredients = [
     pod: 0.049,
     isMilkSolid: false,
   },
+  {
+    name: 'Water',
+    fat: 0,
+    nonFatSolids: 0,
+    water: 1,
+    pac: 0,
+    pod: 0,
+    isMilkSolid: false,
+  },
 ];
 
 export default ingredients;
